@@ -1,4 +1,4 @@
-To install:
+To install: (clean)
 - Node 6.9.1
 - npm 4.1.2
 ```
