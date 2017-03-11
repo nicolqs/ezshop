@@ -1,9 +1,9 @@
 .ItemList {
 	list-style-type: none;
-	justify-content: center;
+	display: inline-block;
 }
 
 .ListItem {
-	width: 100;
-	height: 50;
+	padding: 10px;
+	display: inline-block;
 }
