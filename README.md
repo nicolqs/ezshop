@@ -1,3 +1,5 @@
+![alt tag](https://raw.githubusercontent.com/nicolqs/ezshop/master/ez_logo.png)
+
 To install: (clean)
 - Node 6.9.1
 - npm 4.1.2
