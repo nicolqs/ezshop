@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './ItemList.css';
+import axios from 'axios';
+
+const PRODUCT_URL = 'https://www.openfood.ch/api/v2/products?api_key=5a00a0db16b8544711050bdd0a9f4ddc';
 
 class Item extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
   render() {
     return (
       <li className="Item">
@@ -21,16 +20,49 @@ class Item extends Component {
 }
 
 class ItemList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      products: null
+    };
+  }
+  componentWillMount() {
+    axios.get(PRODUCT_URL, {
+        headers: {
+          "Authorization": "Token token=5a00a0db16b8544711050bdd0a9f4ddc"
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          loaded: true,
+          products: response.data.data
+        });
+      })
+      .catch((error) => {
+        console.log('error', error);
+        this.setState({
+          loaded: false
+        });
+      });
+  }
   render() {
-    const products = ['Milk', 'Egg', 'Orange Juice', 'Banana', 'Toast'];
-    const list = products.map((product) =>
-      <Item name={product} />
-    );
-    return (
-      <ul className="ItemList">
-        {list}
-      </ul>
-    );
+    if (this.state.loaded) {
+      console.log(this.state)
+      const list = this.state.products.map((product) =>
+        <Item name={product.attributes.name} />
+      );
+      return (
+        <ul className="ItemList">
+          {list}
+        </ul>
+      );
+    } else {
+      return (
+        <div>Loading ...</div>
+      );
+    }
   }
 }
 
