@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import ItemList from './ItemList';
+import CategoryList from './CategoryList';
 import './App.css';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           Hello World
         </p>
         <ItemList />
+        <CategoryList />
       </div>
     );
   }
