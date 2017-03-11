@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './ItemList.css';
+import { ListGroup } from 'react-bootstrap';
+import { ListGroupItem } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import axios from 'axios';
 
 const PRODUCT_URL = 'https://www.openfood.ch/api/v2/products?api_key=5a00a0db16b8544711050bdd0a9f4ddc';
@@ -50,13 +53,16 @@ class ItemList extends Component {
   render() {
     if (this.state.loaded) {
       console.log(this.state)
-      const list = this.state.products.map((product) =>
-        <Item name={product.attributes.name} />
+      const list = this.state.products.map((product, index) =>
+        <ListGroupItem className="ListItem" key={index}>
+        <Image src={product.attributes.images[0].thumb}/>
+        {product.attributes.name}
+        </ListGroupItem>
       );
       return (
-        <ul className="ItemList">
-          {list}
-        </ul>
+        <ListGroup className="ItemList">
+          {list} 
+        </ListGroup>
       );
     } else {
       return (

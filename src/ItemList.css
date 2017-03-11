@@ -1,4 +1,9 @@
 .ItemList {
-	float:left;
-	list-style: none;
+	list-style-type: none;
+	justify-content: center;
+}
+
+.ListItem {
+	width: 100;
+	height: 50;
 }
