@@ -17,7 +17,9 @@ class App extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    browserHistory.push('/search/' + this.state.search);
+    if (this.state.search) {
+      browserHistory.push('/search/' + this.state.search);
+    }
   }
   render() {
     return (
@@ -29,7 +31,7 @@ class App extends Component {
           <div className="Search">
             <form className="search" action='/search' onSubmit={this.handleSubmit}>
               <FormGroup className="input-search">
-                <FormControl type="text" value={this.state.search} placeholder="Milk.." onChange={this.handleChangeText} />
+                <FormControl type="text" value={this.state.search} placeholder="Search for news" onChange={this.handleChangeText} />
               </FormGroup>
               <FormGroup>
                 <Button type="submit" value="Submit">

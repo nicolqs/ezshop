@@ -24,12 +24,16 @@
 }
 
 .search input {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .search {
   width: 400px;
   margin: 0 auto;
+}
+
+.search button {
+  margin-top: 1em;
 }
 
 .input-search {
