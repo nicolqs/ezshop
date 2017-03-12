@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import {Link, withRouter} from 'react-router';
-import ItemList from './ItemList';
-import CategoryList from './CategoryList';
+import { browserHistory, Link, withRouter } from 'react-router';
+
+import { Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap';
+
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
   constructor(props) {
     super(props);
     this.state = {search: ''};
@@ -20,7 +18,7 @@ class App extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.context.router.history.push('/search/' + this.state.search);
+    browserHistory.push('/search/' + this.state.search);
   }
   render() {
     return (
@@ -30,15 +28,22 @@ class App extends Component {
           <h2>Welcome to eZ Shop</h2>
         </div>
         <p className="App-intro">
-        <div className="Search">
-          <form className="search" action='/search' onSubmit={this.handleSubmit}>
-            <input type="text" value={this.state.search} placeholder="Milk.." onChange={this.handleChangeText} />
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
-        <ItemList />
-        <CategoryList />
+          <div className="Search">
+            <form className="search" action='/search' onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <InputGroup>
+                  <FormControl type="text" value={this.state.search} placeholder="Milk.." onChange={this.handleChangeText} />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <Button type="submit" value="Submit">
+                  Search
+                </Button>
+              </FormGroup>
+            </form>
+          </div>
         </p>
+        {this.props.children}
       </div>
     );
   }

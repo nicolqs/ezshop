@@ -3,6 +3,9 @@ import {Link, withRouter, browserHistory } from 'react-router';
 import './App.css';
 
 class Search extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
   constructor(props) {
     super(props);
     this.state = {search: ''};
@@ -14,7 +17,7 @@ class Search extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    browserHistory.push('/search/' + this.state.search);
+    this.context.router.history.push('/search/' + this.state.search);
   }
   render() {
     return (
