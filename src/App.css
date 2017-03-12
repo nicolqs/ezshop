@@ -8,9 +8,9 @@
 }
 
 .App-header {
-  background-color: #ffffff;
-  height: 90px;
-  padding: 20px;
+  background-color: #222;
+  height: 110px;
+  padding: 15px;
   color: white;
 }
 
@@ -21,6 +21,10 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.Search {
+  margin-top: 10px;
 }
 
 .search input {

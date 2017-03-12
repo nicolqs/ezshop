@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Image, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Image, Tooltip, OverlayTrigger, Col, Thumbnail } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 import axios from 'axios';
 import './ItemList.css';
 
-const POSTS_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/techcrunch.com/posts';
+const POSTS_URL = 'https://api.swiftype.com/api/v1/public/engines/search.json';
 
 class ItemList extends Component {
   constructor(props) {
@@ -13,12 +14,17 @@ class ItemList extends Component {
       posts: null
     };
   }
-  componentWillMount() {
-    axios.get(POSTS_URL)
+  fetchData(query) {
+    axios.get(POSTS_URL, {
+        params: {
+          "engine_key": "zYD5B5-eXtZN9_epXvoo",
+          "q": query
+        }
+      })
       .then((response) => {
         this.setState({
           loaded: true,
-          posts: response.data.posts
+          posts: response.data.records.page
         });
       })
       .catch((error) => {
@@ -28,26 +34,30 @@ class ItemList extends Component {
         });
       });
   }
+  componentWillMount() {
+    this.fetchData(this.props.search);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.search !== this.props.search) {
+      this.setState({loaded:false});
+      this.fetchData(nextProps.search);
+    }
+  }
   render() {
-    if (this.state.loaded) {
-      console.log(this.state)
+    if (this.state.loaded && this.state.posts) {
       const tooltip = (
         <Tooltip id="tooltip"><strong>Holy guacamole!</strong> Check this info.</Tooltip>
       );
       const list = this.state.posts.map((post, index) => {
-        if (post.post_thumbnail) {
-          return <OverlayTrigger placement="left" overlay={tooltip} key={index}>
-          <ListGroupItem className="ListItem">
-          <div>
-          <Image className="Contain" src={post.post_thumbnail.URL}/>
-          </div>
-          <div>
-          <div className="Contain">
-          {post.title}
-          </div>
-          </div>
-          </ListGroupItem>
-          </OverlayTrigger>
+        if (post.image) {
+          return (
+            <Col xs={6} md={4} key={index}>
+              <Thumbnail>
+                <Image src={post.image}/>
+                <h4>{post.title}</h4>
+              </Thumbnail>
+            </Col>
+          )
         } else {
           return null
         }

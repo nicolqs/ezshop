@@ -8,16 +8,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class SearchResults extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
   constructor(props) {
     super(props);
   }
   render() {
     return (
       <div className="App">
-          <ItemList />
+          <ItemList search={this.props.params.name} />
           <CategoryList />
       </div>
     );
