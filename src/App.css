@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #ffffff;
-  height: 50px;
+  height: 90px;
   padding: 20px;
   color: white;
 }
@@ -24,5 +24,15 @@
 }
 
 .search input {
-  font-size: 32px;
+  font-size: 22px;
+}
+
+.search {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.input-search {
+  text-align: center;
+  margin: 0 auto;
 }

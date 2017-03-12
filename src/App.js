@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory, Link, withRouter } from 'react-router';
 import { Button, FormGroup, InputGroup, FormControl } from 'react-bootstrap';
-import logo from './logo.svg';
+import logo from '../ez_logo.png';
 
 import './App.css';
 
@@ -28,10 +28,8 @@ class App extends Component {
         <p className="App-intro">
           <div className="Search">
             <form className="search" action='/search' onSubmit={this.handleSubmit}>
-              <FormGroup>
-                <InputGroup>
-                  <FormControl type="text" value={this.state.search} placeholder="Milk.." onChange={this.handleChangeText} />
-                </InputGroup>
+              <FormGroup className="input-search">
+                <FormControl type="text" value={this.state.search} placeholder="Milk.." onChange={this.handleChangeText} />
               </FormGroup>
               <FormGroup>
                 <Button type="submit" value="Submit">
