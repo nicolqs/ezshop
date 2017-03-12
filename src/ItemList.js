@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import './ItemList.css';
-import { ListGroup } from 'react-bootstrap';
-import { ListGroupItem } from 'react-bootstrap';
-import { Image } from 'react-bootstrap';
-import { Tooltip } from 'react-bootstrap';
-import { OverlayTrigger } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Image, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios';
+
+import './ItemList.css';
 
 const PRODUCT_URL = 'https://www.openfood.ch/api/v2/products?api_key=5a00a0db16b8544711050bdd0a9f4ddc';
 
@@ -24,7 +21,6 @@ class ItemList extends Component {
         }
       })
       .then((response) => {
-        console.log(response);
         this.setState({
           loaded: true,
           products: response.data.data

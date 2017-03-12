@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute } from 'react-router';
-import { createBrowserHistory } from 'history';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+
 import App from './App';
+import Home from './Home';
 import Categories from './Categories';
 import SearchResults from './SearchResults';
+
 import './index.css';
 
 ReactDOM.render(
-  <Router history={createBrowserHistory()}>
+  <Router history={browserHistory}>
 	<Route path="/" component={App}>
-		<Route path="/search" component={SearchResults} />	
-		<Route path="/categories" component={Categories} />	
+		<IndexRoute component={Home}/>
+		<Route path="/search/:name" component={SearchResults} />
 	</Route>
   </Router>,
   document.getElementById('root')
