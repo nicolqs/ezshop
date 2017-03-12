@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Image, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios';
-
 import './ItemList.css';
 
-const PRODUCT_URL = 'https://www.openfood.ch/api/v2/products?api_key=5a00a0db16b8544711050bdd0a9f4ddc';
+const POSTS_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/techcrunch.com/posts';
 
 class ItemList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loaded: false,
-      products: null
+      posts: null
     };
   }
   componentWillMount() {
-    axios.get(PRODUCT_URL, {
-        headers: {
-          "Authorization": "Token token=5a00a0db16b8544711050bdd0a9f4ddc"
-        }
-      })
+    axios.get(POSTS_URL)
       .then((response) => {
         this.setState({
           loaded: true,
-          products: response.data.data
+          posts: response.data.posts
         });
       })
       .catch((error) => {
@@ -39,15 +34,17 @@ class ItemList extends Component {
       const tooltip = (
         <Tooltip id="tooltip"><strong>Holy guacamole!</strong> Check this info.</Tooltip>
       );
-      const list = this.state.products.map((product, index) => {
-        if (product.attributes.name) {
+      const list = this.state.posts.map((post, index) => {
+        if (post.post_thumbnail) {
           return <OverlayTrigger placement="left" overlay={tooltip} key={index}>
           <ListGroupItem className="ListItem">
           <div>
-          <Image src={product.attributes.images[1].thumb}/>
+          <Image className="Contain" src={post.post_thumbnail.URL}/>
           </div>
           <div>
-          {product.attributes.name}
+          <div className="Contain">
+          {post.title}
+          </div>
           </div>
           </ListGroupItem>
           </OverlayTrigger>
