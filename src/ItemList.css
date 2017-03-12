@@ -1,9 +1,28 @@
 .ItemList {
 	list-style-type: none;
 	display: inline-block;
+	max-width: 75%;
+	max-height: 100%;
 }
 
 .ListItem {
 	padding: 10px;
+	margin-right: -1px;
+	margin-bottom: -1px;
+	padding: 10px;
 	display: inline-block;
+	background: #b0e5e1;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #b2bab7;
+	max-width: 25%;
+	height: 350px;
+	text-align: horizontal;
+	vertical-align: text-top;
+}
+
+.Contain {
+height: 100%;
+width: 100%;
+object-fit: contain;
 }
