@@ -39,6 +39,7 @@ class App extends Component {
             </form>
           </div>
         </p>
+        <Link to="/">Go to Home</Link>
         {this.props.children}
       </div>
     );
